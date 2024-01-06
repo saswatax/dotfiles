@@ -1,0 +1,23 @@
+[user]
+  name = saswata
+  path = .gitconfig-github
+
+[init]
+  defaultBranch = main
+[core]
+  editor = vim 
+[color]
+  ui = auto
+
+[includeIf "hasconfig:remote.*.url:git@github.com:**/**"]
+  path = .gitconfig-github
+[includeIf "hasconfig:remote.*.url:https://github.com/**/**"]
+  path = .gitconfig-github
+
+[includeIf "hasconfig:remote.*.url:git@gitlab.com:**/**"]
+  path = .gitconfig-gitlab
+[includeIf "hasconfig:remote.*.url:https://gitlab.com/**/**"]
+  path = .gitconfig-gitlab
+
+[pull]
+  rebase = true
