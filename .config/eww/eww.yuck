@@ -1,0 +1,232 @@
+(deflisten workspaces :initial "[]" "~/.config/eww/scripts/workspace")
+
+(defvar reveal_brightness false)
+(defvar reveal_volume false)
+(defvar reveal_wifi false)
+(defvar reveal_battery false)
+
+(defvar brightness 50)
+(defvar volume 50)
+(defpoll ssid :interval "1h" "nmcli -t -f CONNECTION dev | awk 'FNR==1'")
+
+(defpoll EWW_TIME :interval "10s" "date '+%H:%M'")
+
+(defwindow bar
+    :monitor 0
+    :geometry (geometry   
+        :x "0%"
+        :y "0%"
+        :width "100%"
+        :height "30px"
+        :anchor "top center"
+    )
+    :stacking "fg"
+    :exclusive true
+    (box 
+        :class "bar"
+        (left :monitor 0)
+        ; (center)
+        (right)
+    )
+)
+
+(defwindow bar1
+    :monitor 1
+    :geometry (geometry   
+        :x "0%"
+        :y "0%"
+        :width "100%"
+        :height "30px"
+        :anchor "top center"
+    )
+    :stacking "fg"
+    :exclusive true
+    (box 
+        :class "bar bar--1"
+        (left :monitor 1)
+    )
+)
+
+(defwidget left [monitor]
+    (box 
+        :class "left"
+        :halign "start"
+        :spacing 6
+        (for workspace in workspaces
+            (button 
+                :class "left__btn ${workspace.active ? "left__btn--active" : ""}"
+                :visible {workspace.id < 6 ? monitor == 0 : monitor == 1 }
+                :onclick "hyprctl dispatch workspace ${workspace.id}"
+                {workspace.id}
+            )
+        )
+    )
+)
+
+(defwidget center []
+    (box 
+        :class "center"
+        :halign "center"
+        :spacing 6
+        "hello"
+    )
+)
+
+(defwidget right []
+    (box 
+        :class "right"
+        :halign "end"
+        :space-evenly false
+        :spacing 6
+        (time)
+    )
+)
+
+(defwidget time []
+  (label
+      :class "time__label"
+      :text "| ${EWW_TIME}"
+  )
+)
+
+
+(defwindow setting
+    :monitor 0
+    :geometry (geometry   
+        :x "15px"
+        :y "5px"
+        :width "400px"
+        :height "400px"
+        :anchor "top right"
+    )
+    :stacking "fg"
+    :exclusive false
+    (box 
+        :class "setting"
+        :orientation "vertical"
+        :space-evenly false
+        :spacing 14
+        (top)
+        (sliders)
+        (controls)
+        (notifications)
+    )
+)
+
+(defwidget top []
+    (box 
+        :class "setting__top"
+        :height 30
+        (label
+            :class "battery"
+            :halign "start"
+            :text "󰂀 ${EWW_BATTERY.BAT1.capacity}%"            
+        )
+        (box
+            :class "power"
+            :halign "end"
+            :space-evenly false
+            :spacing 6
+            (button
+                "󰌾"
+            )
+            (button
+                "󰑓"
+            )
+            (button
+                "󰐥"
+            )
+        )
+    )
+)
+
+(defwidget sliders []
+    (box 
+        :class "setting_sliders"
+        :orientation "vertical"
+        :space-evenly false
+        :spacing 10
+        (box
+            :space-evenly false
+            :spacing 20
+            (label
+                :text "󰕾"
+            )
+            (scale    
+                :class "volume__slider"
+                :value volume
+                :tooltip "${volume}%"
+                :max 100
+                :min 0
+                :onchange "wpctl set-volume @DEFAULT_SINK@ {}% && ${EWW_CMD} update volume={}" 
+         
+            )
+        )
+        (box
+            :space-evenly false
+            :spacing 20
+            (label
+                :text ""
+            )
+            (scale
+                :class "brightness__slider"
+                :halign "fill"
+                :value brightness
+                :tooltip "${brightness}%"
+                :max 100
+                :min 0
+                :onchange "brightnessctl set {}% && ${EWW_CMD} update brightness={}" 
+            )
+        )
+    )
+)
+
+(defwidget controls []
+    (box 
+        :class "setting_controls"
+        :orientation "vertical"
+        :space-evenly false
+        :spacing 8
+        (box
+            :spacing 8
+            (button
+                (label
+                    :halign "start"
+                    :text "󰤨 Wifi"
+                )
+            )
+            (button
+                (label
+                    :halign "start"
+                    :text "󰂯 Bluetooth"
+                )
+            )
+        )
+        (box
+            :spacing 10
+            (button
+                (label
+                    :halign "start"
+                    :text " Night Light"
+                )
+            )
+            (button
+                (label
+                    :halign "start"
+                    :text "󰂚 Do Not Disturb"
+                )
+            )
+        )
+    )
+)
+
+(defwidget notifications []
+    (box 
+        :class "setting_notification"
+        :space-evenly false
+        :spacing 6
+        (box
+            
+        )
+    )
+)

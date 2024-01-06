@@ -1,0 +1,24 @@
+#!/bin/bash
+
+main() {
+    # seq 1 5 | jq --argjson workspaces "${workspaces}" --slurp -Mc 'map(tostring) | map({id: ., windows: ($workspaces[.]//0)})'
+    
+    # active_workspace=$(
+    #     hyprctl monitors -j |
+    #     jq 'map({key:.name, value: .activeWorkspace.id}) | from_entries'
+    # )
+    # workspaces=$(
+    #     hyprctl workspaces -j |
+    #     jq --argjson active_workspace "${active_workspace}" 'map({id: .id, active: (.id == $active_workspace[.monitor])})'
+    # )
+    active_workspace=$(
+        hyprctl monitors -j |
+        jq 'map(.activeWorkspace.id)'
+    )
+    seq 1 9 | jq --argjson active_workspace "${active_workspace}" -Msc 'map({id: ., active: IN($active_workspace[])})'
+}
+
+main
+socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r event; do
+    main
+done

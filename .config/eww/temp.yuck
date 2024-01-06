@@ -1,0 +1,103 @@
+
+(defwidget brightness []
+  (eventbox
+      :class "brightness"
+      :onhover "${EWW_CMD} update reveal_brightness=true"
+      :onhoverlost "${EWW_CMD} update reveal_brightness=false"
+      (box
+          :space-evenly false
+          (label
+              :class "brightness__icon"
+              :text "󰃠"
+          )
+          (revealer
+              :transition "slideleft"
+              :reveal reveal_brightness
+              :duration "350ms"
+              (scale
+                  :class "brightness__slider"
+                  :value brightness
+                  :tooltip "${brightness}%"
+                  :max 100
+                  :min 0
+                  :onchange "brightnessctl set {}% && ${EWW_CMD} update brightness={}" 
+              )
+          )
+      )
+  )
+)
+
+(defwidget volume []
+  (eventbox
+      :class "volume"
+      :onhover "${EWW_CMD} update reveal_volume=true"
+      :onhoverlost "${EWW_CMD} update reveal_volume=false"
+      (box
+          :space-evenly false
+          (label
+              :class "volume__icon"
+              :text "󰕾"
+          )
+          (revealer
+              :transition "slideleft"
+              :reveal reveal_volume
+              :duration "350ms"
+              (scale    
+                  :class "volume__slider"
+                  :value volume
+                  :tooltip "${volume}%"
+                  :max 100
+                  :min 0
+                  :onchange "wpctl set-volume @DEFAULT_SINK@ {}% && ${EWW_CMD} update volume={}" 
+              )
+          )
+      )
+  )
+)
+
+(defwidget wifi []
+  (eventbox
+      :class "wifi"
+      :onhover "${EWW_CMD} update reveal_wifi=true"
+      :onhoverlost "${EWW_CMD} update reveal_wifi=false"
+      (box
+          :space-evenly false
+          (label
+              :class "wifi__icon"
+              :text "󰤨"
+          )
+          (revealer
+              :transition "slideleft"
+              :reveal reveal_wifi
+              :duration "350ms"
+              (label    
+                  :class "wifi__lable"
+                  :text "${ssid}"
+              )
+          )
+      )
+  )
+)
+
+(defwidget battery []
+  (eventbox
+      :class "battery"
+      :onhover "${EWW_CMD} update reveal_battery=true"
+      :onhoverlost "${EWW_CMD} update reveal_battery=false"
+      (box
+          (label
+              :text ""
+              :class "battery__icon"
+          )
+          (revealer
+              :transition "slideleft"
+              :reveal reveal_battery
+              :duration "350ms"
+              (label    
+                  :class "battery__label"
+                  :text "${EWW_BATTERY.BAT1.capacity}"
+              )
+          )
+      )
+  )
+)

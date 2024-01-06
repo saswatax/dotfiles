@@ -1,0 +1,148 @@
+$base: #1e1e2e;
+$mantle: #181825;
+$crust: #11111b;
+
+$text: #cdd6f4;
+$subtext0: #a6adc8;
+$subtext1: #bac2de;
+
+$surface0: #313244;
+$surface1: #45475a;
+$surface2: #585b70;
+
+$overlay0: #6c7086;
+$overlay1: #7f849c;
+$overlay2: #9399b2;
+
+$blue: #89b4fa;
+$lavender: #b4befe;
+$sapphire: #74c7ec;
+$sky: #89dceb;
+$teal: #94e2d5;
+$green: #a6e3a1;
+$yellow: #f9e2af;
+$peach: #fab387;
+$maroon: #eba0ac;
+$red: #f38ba8;
+$mauve: #cba6f7;
+$pink: #f5c2e7;
+$flamingo: #f2cdcd;
+$rosewater: #f5e0dc;
+
+* {
+  all: unset;
+  font-family: "JetBrainsMono NF";
+  font-size: 14px;
+}
+
+.bar {
+  background-color: $mantle;
+  padding: 6px;
+  color: $text;
+}
+
+tooltip {
+  padding: 4px;
+  background-color: $mantle;
+  color: $text;
+  border-radius: 6px;
+}
+
+// left
+
+.left__btn {
+  background-color: $base;
+  padding: 2px 14px;
+  border-radius: 4px;
+}
+
+.left__btn:hover {
+  background-color: $overlay2;
+  color: $base;
+}
+
+.left__btn--active {
+  background-color: $text;
+  color: $base;
+}
+
+// right
+
+trough {
+  min-width: 346px;
+  min-height: 16px;
+  background-color: $mantle;
+}
+
+trough highlight {
+  background-color: $text;
+  border-radius: 10px;
+}
+
+.brightness__icon {
+  font-size: 16px;
+  color: $yellow;
+  margin-right: 10px;
+}
+
+.brightness__slider trough highlight {
+  background-color: $yellow;
+}
+
+.volume__icon {
+  font-size: 18px;
+  color: $teal;
+  margin-right: 10px;
+}
+
+.volume__slider trough highlight {
+  background-color: $teal;
+}
+
+.wifi__icon {
+  font-size: 16px;
+  color: $lavender;
+  margin-right: 14px;
+}
+
+.battery__icon {
+  font-size: 16px;
+  color: $mauve;
+}
+
+.battery__label {
+  margin-left: 10px;
+}
+
+.time__label {
+  color: $text;
+}
+
+.setting {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: $mantle;
+}
+
+.battery {
+  padding: 2px 18px;
+  border-radius: 6px;
+  background-color: green;
+}
+
+.power button {
+  padding: 0px 10px;
+  background-color: #74c7ec;
+  border-radius: 100%;
+}
+
+.setting_controls button {
+  padding: 10px;
+  border-radius: 6px;
+  color: $base;
+  background-color: $lavender;
+}
+
+.setting_controls button label {
+  font-size: 16px;
+}
