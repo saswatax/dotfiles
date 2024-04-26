@@ -1,5 +1,8 @@
-import = ["/home/saswata/.config/alacritty/catppuccin-mocha.toml"]
+import = ["~/.config/alacritty/mocha.toml"]
 
-[font.normal]
-family = "FiraCode Nerd Font"
-style = "Regular"
+[font]
+normal = { family = "FiraCode Nerd Font", style = "Regular"}
+size = 14
+
+[window]
+opacity = 0.8
