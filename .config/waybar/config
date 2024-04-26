@@ -1,28 +1,32 @@
-
 {
     "layer": "top",
     "modules-left": ["hyprland/workspaces"],
-    "modules-center": [],
-    "modules-right": ["network", "pulseaudio", "backlight", "battery", "clock", "tray"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "network", "pulseaudio", "backlight", "battery"],
+    
     "hyprland/workspaces": {
-     	"persistent-workspaces": {
+    	"persistent-workspaces": {
 		"eDP-1": [ 1, 2, 3, 4, 5 ],
 		"HDMI-A-1": [ 6, 7, 8, 9 ], 
 	},
          "disable-scroll": true,
          "format": "{name}",
     },
+    
+    "clock": {
+    	"format": "{:%a, %d %b, %H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    },
+    
     "tray": {
         "spacing": 10
     },
-    "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
+    
     "backlight": {
         "format": "{percent} {icon}",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
+
     "battery": {
         "states": {
             "good": 95,
