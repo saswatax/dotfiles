@@ -104,3 +104,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias nv="nvim"
+alias snv="sudo nvim"
+alias cat="bat"
+alias wifi="nmcli device wifi"
+alias dots="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
