@@ -1,0 +1,47 @@
+#!/sbin/zsh
+
+mainMod="SUPER"
+mainMod2="ALT_R"
+
+hyprctl --batch --quiet "\
+keyword unbind $mainMod, 1;\
+keyword unbind $mainMod, 2;\
+keyword unbind $mainMod, 3;\
+keyword unbind $mainMod, 4;\
+keyword unbind $mainMod, 5;\
+keyword unbind $mainMod2, 1;\
+keyword unbind $mainMod2, 2;\
+keyword unbind $mainMod2, 3;\
+keyword unbind $mainMod2, 4;\
+keyword unbind $mainMod2, 5;\
+keyword unbind $mainMod SHIFT, 1;\
+keyword unbind $mainMod SHIFT, 2;\
+keyword unbind $mainMod SHIFT, 3;\
+keyword unbind $mainMod SHIFT, 4;\
+keyword unbind $mainMod SHIFT, 5;\
+keyword unbind $mainMod2 SHIFT, 1;\
+keyword unbind $mainMod2 SHIFT, 2;\
+keyword unbind $mainMod2 SHIFT, 3;\
+keyword unbind $mainMod2 SHIFT, 4;\
+keyword unbind $mainMod2 SHIFT, 5;\
+keyword bind $mainMod, 1, workspace, 1;\
+keyword bind $mainMod, 2, workspace, 2;\
+keyword bind $mainMod, 3, workspace, 3;\
+keyword bind $mainMod, 4, workspace, 4;\
+keyword bind $mainMod, 5, workspace, 5;\
+keyword bind $mainMod2, 1, workspace, 6;\
+keyword bind $mainMod2, 2, workspace, 7;\
+keyword bind $mainMod2, 3, workspace, 8;\
+keyword bind $mainMod2, 4, workspace, 9;\
+keyword bind $mainMod2, 5, workspace, 10;\
+keyword bind $mainMod SHIFT, 1, movetoworkspace, 1;\
+keyword bind $mainMod SHIFT, 2, movetoworkspace, 2;\
+keyword bind $mainMod SHIFT, 3, movetoworkspace, 3;\
+keyword bind $mainMod SHIFT, 4, movetoworkspace, 4;\
+keyword bind $mainMod SHIFT, 5, movetoworkspace, 5;\
+keyword bind $mainMod2 SHIFT, 1, movetoworkspace, 6;\
+keyword bind $mainMod2 SHIFT, 2, movetoworkspace, 7;\
+keyword bind $mainMod2 SHIFT, 3, movetoworkspace, 8;\
+keyword bind $mainMod2 SHIFT, 4, movetoworkspace, 9;\
+keyword bind $mainMod2 SHIFT, 5, movetoworkspace, 10;\
+"

@@ -108,3 +108,20 @@ alias snv="sudo nvim"
 alias cat="bat"
 alias wifi="nmcli device wifi"
 alias dots="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias zed="zeditor"
+alias kcol="hyprctl --quiet keyword input:kb_variant 'colemak_dh_wide'"
+alias kqwe="hyprctl --quiet keyword input:kb_variant ''"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/home/saswata/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+export PATH=$HOME/.config/script:$PATH
