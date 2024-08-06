@@ -124,4 +124,5 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-export PATH=$HOME/.config/script:$PATH
+export PATH=$HOME/.config/script:$HOME/go/bin:$PATH
+
